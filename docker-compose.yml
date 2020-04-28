@@ -1,7 +1,7 @@
 version: "3"
 services:
   wing:
-    image: v2fly/v2ray-core:latest
+    image: v2ray/official:latest
     volumes:
       - ./v2ray:/etc/v2ray
       - ./logs:/usr/logs
