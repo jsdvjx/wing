@@ -1,0 +1,29 @@
+{
+  "$schema": "./schema.json",
+  "inbounds": [
+    {
+      "protocol": "vmess",
+      "listen": "0.0.0.0",
+      "port": 13298,
+      "settings": {
+        "clients": [
+          {
+            "id": "57f6f887-6950-4910-986a-c411df1b3c1d"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ],
+  "log": {
+    "access": "/usr/logs/v2ray/access.log",
+    "error": "/usr/logs/v2ray/error.log"
+  }
+}

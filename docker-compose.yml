@@ -1,0 +1,28 @@
+version: "3"
+services:
+  wing:
+    image: v2fly/v2ray-core:latest
+    volumes:
+      - ./v2ray:/etc/v2ray
+      - ./logs:/usr/logs
+    networks:
+      - way
+  ngi:
+    image: nginx:latest
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./html:/var/www/html
+    networks: 
+      - way
+  ha:
+    image: haproxy:latest
+    volumes: 
+      - ./logs:/usr/logs
+      - ./haproxy:/usr/local/etc/haproxy
+      - ./cert:/etc/cert
+    networks: 
+      - way
+    ports: 
+      - 443:443
+networks:
+  way:
