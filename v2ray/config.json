@@ -20,10 +20,58 @@
   "outbounds": [
     {
       "protocol": "freedom"
+    },
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "nat.at.ci",
+            "port": 49004,
+            "users": [
+              {
+                "id": "f64879ca-b718-4bc2-9a07-2544627efd6e",
+                "alterId": 64
+              }
+            ]
+          }
+        ],
+        "mux": {
+          "enabled": true,
+          "concurrency": 2
+        }
+      },
+      "tag": "hkt"
     }
   ],
   "log": {
     "access": "/usr/logs/v2ray/access.log",
     "error": "/usr/logs/v2ray/error.log"
+  },
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "domain": [
+            "domain:netflix.com",
+            "domain:nflxso.net",
+            "domain:nflxvideo.net"
+          ],
+          "outboundTag": "hkt"
+        },
+        {
+          "type": "field",
+          "ip": [
+            "geoip:cn",
+            "geoip:private",
+            "10.0.0.0/24"
+          ],
+          "outboundTag": "direct"
+        }
+      ]
+    }
   }
 }
