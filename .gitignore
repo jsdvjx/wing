@@ -1,3 +1,6 @@
 cert
 acme.sh
 logs
+.idea
+.vscode
+/logs/

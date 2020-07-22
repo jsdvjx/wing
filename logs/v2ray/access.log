@@ -1,3 +1,0 @@
-2020/07/13 09:26:16 172.18.0.6:52318 rejected  v2ray.com/core/proxy/vmess/encoding: failed to read request header > read tcp 172.18.0.4:13298->172.18.0.6:52318: i/o timeout
-2020/07/13 09:26:30 172.18.0.6:52360 rejected  v2ray.com/core/proxy/vmess/encoding: failed to read request header > read tcp 172.18.0.4:13298->172.18.0.6:52360: i/o timeout
-2020/07/13 09:59:42 172.18.0.6:60234 rejected  v2ray.com/core/proxy/vmess/encoding: failed to read request header > read tcp 172.18.0.3:13298->172.18.0.6:60234: i/o timeout
