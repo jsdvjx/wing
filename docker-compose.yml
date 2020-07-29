@@ -1,7 +1,8 @@
 version: "3"
 services:
   wing:
-    image: v2ray/official:latest
+    image: v2fly/v2fly-core:latest
+    container_name: wing-v2ray
     volumes:
       - ./v2ray:/etc/v2ray
       - ./logs:/usr/logs
@@ -27,9 +28,11 @@ services:
       - ./haproxy:/usr/local/etc/haproxy
       - ./cert:/etc/cert
       - ./init:/init
+      - ./v2ray:/v2ray
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/bin/docker
       - /usr/bin/com.docker.cli:/bin/com.docker.cli
+      - ./nginx/conf.d:/etc/nginx/conf.d
     env_file:
       - ./init/dnsapi.env
     networks:
@@ -39,6 +42,7 @@ services:
       - acme
   ngi:
     image: nginx:latest
+    container_name: wing_nginx
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./html:/var/www/html

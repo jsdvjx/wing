@@ -4,3 +4,5 @@ logs
 .idea
 .vscode
 /logs/
+/init/uuid
+/html/qrcode.png
