@@ -6,3 +6,5 @@ logs
 /logs/
 /init/uuid
 /html/qrcode.png
+env
+.idea

@@ -1,0 +1,16 @@
+server {
+    listen 8001;
+    listen 8002 http2;
+    server_name speed.$WING_DOMAIN;
+    charset utf-8;
+
+
+    location / {
+        client_max_body_size 50m;
+    	proxy_set_header X-Real-IP $remote_addr;                       # 存放用户的真实ip
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   # 每经过一个反向代理，就会把反向代理IP存放在X-Forwarded-For里
+        proxy_pass http://speed;
+    }
+    error_page  404              /404.html;
+    error_page 500 502 503 504 /50x.html;
+}

@@ -1,0 +1,2 @@
+FROM nginx
+RUN sed "3ifind /template -type f -name '*.conf' -exec sh -c '_temp={}&&_full=\${_temp##*/}&&_name=\${_full%.*}&&cat \$_temp|envsubst \"\$WING_ENV_LIST\" > \$WING_NGI_CONF_PATH/\$_name.conf' \\\;" -i  docker-entrypoint.sh

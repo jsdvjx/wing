@@ -1,0 +1,54 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$WING_USER_ID",
+                        "level": 0,
+                        "email": "$WING_USER_EMAIL"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": "wing_nginx:8001"
+                    },
+                    {
+                        "alpn": "h2",
+                        "dest": "wing_nginx:8002"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "$WING_DOMAIN",
+                    "alpn": [
+                        "h2",
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/acme.sh/$WING_DOMAIN/fullchain.cer",
+                            "keyFile": "/acme.sh/$WING_DOMAIN/$WING_DOMAIN.key"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        }
+    ]
+}
